@@ -1,0 +1,29 @@
+{
+    "name": "busman/acl",
+    "description": "Access Control List module for Busman ERP",
+    "keywords": ["laravel", "erp", "scaffolding", "saas"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marcelo Barros da Silva",
+            "email": "maxcelos@outlook.com"
+        }
+    ],
+    "require": {
+
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Busman\\Acl\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Busman\\Acl\\Providers\\AclProvider"
+            ]
+        }
+    }
+}

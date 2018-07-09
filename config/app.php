@@ -4,25 +4,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Logo
-    |--------------------------------------------------------------------------
-    |
-    | Trecho de código customizado para carregar a logo do sistema.
-    */
-
-    'logo' => env('APP_LOGO', ''),
-
-    /*
-    |--------------------------------------------------------------------------
     | Application Name
     |--------------------------------------------------------------------------
     |
     | This value is the name of your application. This value is used when the
     | framework needs to place the application's name in a notification or
     | any other location as required by the application or its packages.
+    |
     */
 
-    'name' => env('APP_NAME', 'BusMan'),
+    'name' => env('APP_NAME', 'Busman'),
 
     /*
     |--------------------------------------------------------------------------
@@ -35,7 +26,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'local'),
+    'env' => env('APP_ENV', 'production'),
 
     /*
     |--------------------------------------------------------------------------
@@ -48,7 +39,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', true),
+    'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -61,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://albasolucoes.com'),
+    'url' => env('APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -74,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'America/Sao_Paulo',
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -87,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'pt',
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -100,7 +91,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'pt',
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -113,39 +104,9 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'base64:SseouFKH95sbacl8tXusMacvjcRWqd2vkXgN9hp4vOs='),
+    'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Logging Configuration
-    |--------------------------------------------------------------------------
-    |
-    | Here you may configure the log settings for your application. Out of
-    | the box, Laravel uses the Monolog PHP logging library. This gives
-    | you a variety of powerful log handlers / formatters to utilize.
-    |
-    | Available Settings: "single", "daily", "syslog", "errorlog"
-    |
-    */
-
-    'log' => env('APP_LOG', 'single'),
-
-    'log_level' => env('APP_LOG_LEVEL', 'debug'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Admin access generator
-    |--------------------------------------------------------------------------
-    |
-    | Generate admin user from instaler data
-    |
-    */
-   
-    'admin_name' => env('YOUR_NAME', 'admin'),
-    'admin_email' => env('YOUR_EMAIL', 'admin@email.com'),
-    'admin_pass' => env('YOUR_PASS', 'secret'),
 
     /*
     |--------------------------------------------------------------------------
@@ -186,15 +147,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-
-
         /*
          * Package Service Providers...
          */
-        Collective\Html\HtmlServiceProvider::class,
-        /*Chumper\Zipper\ZipperServiceProvider::class,*/
-
-        //
 
         /*
          * Application Service Providers...
@@ -224,6 +179,7 @@ return [
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
         'Blade' => Illuminate\Support\Facades\Blade::class,
+        'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
         'Bus' => Illuminate\Support\Facades\Bus::class,
         'Cache' => Illuminate\Support\Facades\Cache::class,
         'Config' => Illuminate\Support\Facades\Config::class,
@@ -252,10 +208,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
-
 
     ],
 

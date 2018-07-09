@@ -1,0 +1,23 @@
+{
+    "name": "busman/utils",
+    "description": "Laravel useful implementations for any project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marcelo Barros da Silva",
+            "email": "maxcelos@outlook.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Busman\\Utils\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Busman\\Utils\\UtilsProvider"
+            ]
+        }
+    }
+}
