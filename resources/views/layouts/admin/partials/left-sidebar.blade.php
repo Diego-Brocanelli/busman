@@ -5,8 +5,8 @@
             <img src="/admin/images/user.png" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
-            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-            <div class="email">john.doe@example.com</div>
+            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->name }}</div>
+            <div class="email">{{ auth()->user()->email }}</div>
             <div class="btn-group user-helper-dropdown">
                 <i class="pe-7s-angle-down pe-2x" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
                 <ul class="dropdown-menu pull-right">
@@ -25,8 +25,8 @@
     <!-- Menu -->
     <div class="menu">
         <ul class="list">
-            <li class="{{ Route::current()->getPrefix() == '/' ? 'active' : '' }}">
-                <a href="/">
+            <li class="{{ Route::current()->getPrefix() == '' ? 'active' : '' }}">
+                <a href="{{ route('dashboard') }}">
                     <i class="pe-7s-home pe-2x pe-va"></i>
                     <span>Home</span>
                 </a>
@@ -37,14 +37,14 @@
                     <span>Users</span>
                 </a>
                 <ul class="ml-menu">
-                    <li>
-                        <a href="/users">
+                    <li class={{ Route::current()->getName() == 'users.list' ? 'active' : '' }}>
+                        <a href="{{ route('users.list') }}">
                             <i class="pe-7s-angle-right pe-2x pe-va"></i>
                             <span>List</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="/users/create">
+                    <li class="{{ Route::current()->getName() == 'users.create' ? 'active' : '' }}">
+                        <a href="{{ route('users.create') }}">
                             <i class="pe-7s-angle-right pe-2x pe-va"></i>
                             <span>Create</span>
                         </a>
@@ -57,26 +57,26 @@
                     <span>Financial</span>
                 </a>
                 <ul class="ml-menu">
-                    <li>
+                    <li class="{{ Route::current()->getName() == 'financial.incoming' ? 'active' : '' }}">
                         <a href="{{ route('financial.incoming') }}">
                             <i class="pe-7s-angle-right pe-2x pe-va"></i>
                             <span>Incoming</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="/financial/expenses">
+                    <li class="{{ Route::current()->getName() == 'financial.expenses' ? 'active' : '' }}">
+                        <a href="{{ route('financial.expenses') }}">
                             <i class="pe-7s-angle-right pe-2x pe-va"></i>
                             <span>Expenses</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="/financial/accounts">
+                    <li class="{{ Route::current()->getName() == 'financial.accounts' ? 'active' : '' }}">
+                        <a href="{{ route('financial.accounts') }}">
                             <i class="pe-7s-angle-right pe-2x pe-va"></i>
                             <span>Accounts</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="/financial/balance">
+                    <li class="{{ Route::current()->getName() == 'financial.balance' ? 'active' : '' }}">
+                        <a href="{{ route('financial.balance') }}">
                             <i class="pe-7s-angle-right pe-2x pe-va"></i>
                             <span>Balance</span>
                         </a>

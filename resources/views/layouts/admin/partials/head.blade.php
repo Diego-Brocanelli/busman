@@ -6,6 +6,9 @@
     <!-- Favicon-->
     <link rel="icon" href="/admin/favicon.ico" type="image/x-icon">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -26,9 +29,28 @@
     <!-- Morris Chart Css-->
     <link href="/admin/plugins/morrisjs/morris.css" rel="stylesheet" />
 
+    <link href="/admin/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+
+
+    <!-- Sweetalert Css -->
+    <link href="/admin/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+
     <!-- Custom Css -->
     <link href="/admin/css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="/admin/css/themes/all-themes.css" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+    <script>
+        window.axios.defaults.headers.common = {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        };
+    </script>
 </head>

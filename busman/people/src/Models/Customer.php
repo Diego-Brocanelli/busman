@@ -8,12 +8,10 @@ use Laravel\Scout\Searchable;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Busman\Utils\Traits\HasScope;
-use OwenIt\Auditing\Auditable as AuditableTrait;
-use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class Customer extends Model implements HasMedia, AuditableContract
+class Customer extends Model implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait, Searchable, HasScope, AuditableTrait;
+    use SoftDeletes, HasMediaTrait, Searchable, HasScope;
 
     public function toSearchableArray()
     {

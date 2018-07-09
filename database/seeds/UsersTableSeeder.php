@@ -67,15 +67,6 @@ class UsersTableSeeder extends Seeder
                 'owner_id' => $user->id
             ]);
 
-            $team->setup()->create([
-                'name' => 'job_status',
-                'value' => json_encode($comStatus)
-            ]);
-
-            $user->preferences()->create([
-                'team_id' => $team->id
-            ]);
-
             $user->employee()->create([
                 'department' => $userDataItem['department'],
                 'meta' => null,
@@ -143,51 +134,12 @@ class UsersTableSeeder extends Seeder
                 $team->users()->attach($customer, ['role' => 'customer']);
             });
 
-            $baseData = include(database_path('seeds/base.php'));
-
-            foreach ($baseData['materials'] as $material) {
-                Material::create([
-                    'type' => 'material',
-                    'name' => $material['name'],
-                    'price' => 15,
-                    'cost' => 10,
-                    'list_price' => 13,
-                    'manufacturer' => $material['vendor'],
-                    'manufacturer_number' => random_int(1, 9999),
-                    'vendor' => $material['vendor'],
-                    'vendor_number' => random_int(1, 9999),
-                    'team_id' => $team->id
-                ]);
-            }
-
-            foreach ($baseData['customers'] as $customerData) {
-                $customer = User::create([
-                    'name' => $customerData['name'],
-                    'email' => str_random(5) . '@email.com',
-                    'password' => bcrypt('admin.123'),
-                    'last_read_announcements_at' => Carbon::now(),
-                    'trial_ends_at' => Carbon::now()->addDays(Spark::trialDays()),
-                ]);
-
-                $customer->customer()->create([
-                    'business_name' => $customer->name,
-                    'meta' => null,
-                    'team_id' => $team->id
-                ]);
-
-                $customer->assignRole('customer');
-
-                $team->users()->attach($customer, ['role' => 'customer']);
-            }
-
-
-
 
             /*
              * Create 2 non admin users for this team
              *
              * */
-            factory(User::class, 2)->create()->each(function($employee) use ($team, $userDataItem) {
+            factory(User::class, 150)->create()->each(function($employee) use ($team, $userDataItem) {
                 $employee->employee()->create([
                     'department' => $userDataItem['department'],
                     'meta' => null,

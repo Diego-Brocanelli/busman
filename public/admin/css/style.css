@@ -2443,7 +2443,7 @@ a {
   animation: none !important; }
 
 section.content {
-  margin: 80px 0 0 300px;
+  margin: 80px 0 0 250px;
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
   -webkit-transition: 0.5s;
@@ -3415,20 +3415,21 @@ section.content {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
-  border-radius: 0;
+  border-radius: 8px;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-shadow: none;
   box-shadow: none;
   border: none;
-  color: #fff !important; }
+  color: #fff !important;
+  text-shadow: 1px 1px #000;}
   .alert .alert-link {
     color: #fff;
     text-decoration: underline;
     font-weight: bold; }
 
 .alert-success {
-  background-color: #2b982b; }
+  background-color: #2b982bba; }
 
 .alert-info {
   background-color: #00b0e4; }
@@ -7521,7 +7522,7 @@ fieldset[disabled] .form-control {
   transition: all 0.5s;
   font-family: "Lato", sans-serif;
   background: #fdfdfd;
-  width: 300px;
+  width: 250px;
   overflow: hidden;
   display: inline-block;
   height: calc(100vh - 70px);
@@ -7702,7 +7703,7 @@ fieldset[disabled] .form-control {
           font-weight: 600;
           margin-left: 5px; }
           .sidebar .menu .list .ml-menu li.active a.toggled:not(.menu-toggle):before {
-            content: '\E315';
+            /*content: '\E315';*/
             font-family: 'Pe-icon-7-stroke';
             position: relative;
             font-size: 21px;
@@ -8181,4 +8182,19 @@ html.ie11 .bs-searchbox .form-control {
     100% {
         top: 0;
     }
+}
+
+
+/* Animações de entrada e saída podem utilizar diferentes  */
+/* funções de duração e de tempo.                          */
+.slide-fade-enter-active {
+    transition: all .3s ease;
+}
+.slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active em versões anteriores a 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
 }

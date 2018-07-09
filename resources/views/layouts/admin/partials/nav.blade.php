@@ -5,16 +5,18 @@
             <a href="javascript:void(0);" class="bars"></a>
             <a class="navbar-brand" href="/"><img src="/admin/images/comp.png" width="45" style="float: left;" alt=""> <span class="brand-title">{{ config('app.name') }}</span></a>
         </div>
-        <div class="col-md-7 global-search">
+        {{--<div class="col-md-7 global-search">
             <div class="search-icon">
                 <i class="pe-7s-search pe-2x pe-va"></i>
             </div>
             <input type="text" placeholder="Global Search...">
-        </div>
+        </div>--}}
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <!-- Call Search -->
+{{--
                 <li class="m-search"><a href="javascript:void(0);" class="js-search" data-close="true"><i class="pe-7s-search pe-2x pe-va stroke-1"></i></a></li>
+--}}
                 <!-- #END# Call Search -->
                 <li><a href="javascript:void(0);"><i class="pe-7s-date pe-2x pe-va stroke-1"></i></a></li>
                 <!-- Notifications -->

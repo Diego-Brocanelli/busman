@@ -4,10 +4,6 @@ namespace Busman\People\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-use Busman\Common\Models\Address;
-use Busman\Common\Models\Email;
-use Busman\Common\Models\Phone;
-use Busman\Common\Models\Preference;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -15,12 +11,10 @@ use Busman\Acl\Traits\HasPermissions;
 use Busman\People\Traits\HasTeams;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use OwenIt\Auditing\Auditable as AuditableTrait;
-use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class User extends Authenticatable implements HasMedia, AuditableContract
+class User extends Authenticatable implements HasMedia
 {
-    use HasTeams, HasApiTokens, HasMediaTrait, SoftDeletes, Notifiable, HasPermissions, AuditableTrait;
+    use HasTeams, HasApiTokens, HasMediaTrait, SoftDeletes, Notifiable, HasPermissions;
 
     /**
      * The attributes that are mass assignable.
@@ -68,26 +62,6 @@ class User extends Authenticatable implements HasMedia, AuditableContract
         'trial_ends_at' => 'datetime',
         'uses_two_factor_auth' => 'boolean',
     ];
-
-    public function phones()
-    {
-        return $this->belongsToMany(Phone::class, 'user_phones');
-    }
-
-    public function emails()
-    {
-        return $this->belongsToMany(Email::class, 'user_emails');
-    }
-
-    public function addresses()
-    {
-        return $this->belongsToMany(Address::class, 'user_addresses');
-    }
-
-    public function preferences()
-    {
-        return $this->hasOne(Preference::class);
-    }
 
     public function customer()
     {

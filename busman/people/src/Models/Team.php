@@ -4,18 +4,11 @@ namespace Busman\People\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Busman\Payment\Traits\Billable;
 use Busman\Acl\Models\Role;
-use Busman\Common\Models\Setup;
-use Busman\Jobs\Models\Job;
-use Busman\Jobs\Models\Service;
-use Busman\Payment\Models\Subscription;
-use OwenIt\Auditing\Auditable as AuditableTrait;
-use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class Team extends Model implements AuditableContract
+class Team extends Model
 {
-    use Billable, Notifiable, AuditableTrait;
+    use Notifiable;
 
     protected $fillable = ['name', 'slug', 'owner_id'];
 
@@ -77,10 +70,6 @@ class Team extends Model implements AuditableContract
 
     public function jobs(){
         return $this->hasMany(Job::class);
-    }
-
-    public function setup(){
-        return $this->hasMany(Setup::class);
     }
 
     public function shouldHaveOwnerVisibility()

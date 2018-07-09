@@ -5,7 +5,7 @@
 
 <body class="theme-purple">
     <!-- Page Loader -->
-    @include('layouts.admin.partials.loader')
+    {{--@include('layouts.admin.partials.loader')--}}
     <!-- #END# Page Loader -->
 
     <!-- Overlay For Sidebars -->
@@ -13,7 +13,7 @@
     <!-- #END# Overlay For Sidebars -->
 
     <!-- Search Bar -->
-    @include('layouts.admin.partials.search-bar')
+    {{--@include('layouts.admin.partials.search-bar')--}}
     <!-- #END# Search Bar -->
 
     <!-- Top Bar -->
@@ -32,9 +32,9 @@
 
     <section class="content">
         <div class="container-fluid">
-            <div class="block-header">
+            {{--<div class="block-header">
                 <h2>@yield('title')</h2>
-            </div>
+            </div>--}}
 
             <!-- Main Content -->
             @yield('main-content')

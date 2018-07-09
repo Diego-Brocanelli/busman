@@ -50,10 +50,10 @@ class EmployeeController extends Controller
             $user->addMedia(storage_path('app/'.$request->image))->toMediaCollection('profile');
         }
 
-        $user->preferences()->create([
+        /*$user->preferences()->create([
             'language' => auth()->user()->preferences->language,
             'team_id' => auth()->user()->currentTeam->id
-        ]);
+        ]);*/
 
         $employeeData = $request->only(['department', 'meta']);
         $employeeData['team_id'] = auth()->user()->currentTeam->id;
@@ -78,24 +78,26 @@ class EmployeeController extends Controller
 
         $user = $employee->user;
 
-        $user->permissions = $user->getAllPermissions()->toArray();
-        $user->load('roles', 'preferences');
+        $employee->load('user', 'user.roles');
 
-        $employeeData = $employee->toArray();
-        $employeeData['id'] = $employee->id;
-        $employeeData['user'] = $user->toArray();
+        //$user->permissions = $user->getAllPermissions()->toArray();
+        //$user->load('roles');
+
+        //$employeeData = $employee->toArray();
+        //$employeeData['id'] = $employee->id;
+        //$employeeData['user'] = $user->toArray();
 
         if ($user->getMedia('profile')->first()) {
             if (env('MEDIA_DRIVER') == 's3') {
-                $employeeData['image'] = Storage::temporaryUrl(
+                $employee->image = Storage::temporaryUrl(
                     'media/'.$user->getMedia('profile')->first()->getPath(), now()->addMinutes(5)
                 );
             } else {
-                $employeeData['image'] = str_replace(storage_path('app/public'), url('/storage'), $user->getMedia('profile')->first()->getPath());
+                $employee->image = str_replace(storage_path('app/public'), url('/storage'), $user->getMedia('profile')->first()->getPath());
             }
         }
 
-        return $employeeData;
+        return $employee->toArray();
     }
 
     public function update(EmployeeRequest $request, Employee $employee)
