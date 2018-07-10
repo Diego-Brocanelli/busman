@@ -1,0 +1,29 @@
+{
+    "name": "busman/financial",
+    "description": "Financial module for Busman ERP",
+    "keywords": ["laravel", "erp", "scaffolding", "saas"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marcelo Barros da Silva",
+            "email": "maxcelos@outlook.com"
+        }
+    ],
+    "require": {
+
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Busman\\Financial\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Busman\\Financial\\Providers\\AccountingProvider"
+            ]
+        }
+    }
+}

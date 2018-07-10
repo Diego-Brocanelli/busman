@@ -8,7 +8,7 @@
             <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->name }}</div>
             <div class="email">{{ auth()->user()->email }}</div>
             <div class="btn-group user-helper-dropdown">
-                <i class="pe-7s-angle-down pe-2x" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
+                <i class="pe-7s-angle-down pe-2x" style="font-weight: bold;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></i>
                 <ul class="dropdown-menu pull-right">
                     <li><a href="javascript:void(0);"><i class="pe-7s-user pe-2x pe-va"></i> Profile</a></li>
                     <li role="seperator" class="divider"></li>
