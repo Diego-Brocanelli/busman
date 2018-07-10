@@ -16,16 +16,6 @@
                             <a href="{{ route('users.create') }}" class="btn btn-xs btn-success pull-right" style="margin-right: 5px">New</a>
                         </div>
                     </div>
-                    {{--<ul class="header-dropdown m-r--5">
-                        <li class="dropdown">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons">more_vert</i>
-                            </a>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a href="{{ route('users.create') }}" class=" waves-effect waves-block">New</a></li>
-                            </ul>
-                        </li>
-                    </ul>--}}
                 </div>
                 <div id="app" class="body">
 
@@ -56,8 +46,16 @@
                         <table class="table table-responsive">
                             <thead>
                             <tr>
-                                <td>Name</td>
-                                <td>Email</td>
+                                <td @click="orderBy('user.name')">
+                                    Name
+                                    <i class="pe-7s-angle-up pull-right pe-2x" v-if="sort_by == 'user.name'"></i>
+                                    <i class="pe-7s-angle-down pull-right pe-2x" v-if="sort_by_desc == 'user.name'"></i>
+                                </td>
+                                <td @click="orderBy('user.email')">
+                                    Email
+                                    <i class="pe-7s-angle-up pull-right pe-2x" v-if="sort_by == 'user.email'"></i>
+                                    <i class="pe-7s-angle-down pull-right pe-2x" v-if="sort_by_desc == 'user.email'"></i>
+                                </td>
                                 <td></td>
                             </tr>
                             </thead>
@@ -113,12 +111,22 @@
                 maxVisibleButtons: 3,
                 pages: [],
                 search_query: '',
-                timeout: null
+                timeout: null,
+
+                sort_by: 'user.name',
+                sort_by_desc: '',
             },
 
             methods: {
-                getEmployees: function () {
-                    axios.get('/api/employees?limit=' + this.per_page + '&page=' + this.current_page + '&q=' + this.search_query).then(response => {
+                getEmployees: function (sort_by = false) {
+
+                    let sort = '&sort_by=' + this.sort_by;
+
+                    if (this.sort_by_desc) {
+                        sort = '&sort_by_desc=' + this.sort_by_desc
+                    }
+
+                    axios.get('/api/employees?limit=' + this.per_page + '&page=' + this.current_page + sort + '&q=' + this.search_query).then(response => {
                         let data = response.data;
 
                         this.employees = data.data;
@@ -202,6 +210,18 @@
                         })
 
                     })
+                },
+
+                orderBy: function (column) {
+                    if (this.sort_by == column) {
+                        this.sort_by = '';
+                        this.sort_by_desc = column;
+                    } else {
+                        this.sort_by = column;
+                        this.sort_by_desc = '';
+                    }
+
+                    this.getEmployees();
                 }
             },
 

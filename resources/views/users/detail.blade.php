@@ -16,16 +16,6 @@
                             <a href="{{ route('users.list') }}" class="btn btn-xs btn-success pull-right" style="margin-right: 5px">Back to List</a>
                         </div>
                     </div>
-                    {{--<ul class="header-dropdown m-r--5">
-                        <li class="dropdown">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons">more_vert</i>
-                            </a>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a href="{{ route('users.create') }}" class=" waves-effect waves-block">New</a></li>
-                            </ul>
-                        </li>
-                    </ul>--}}
                 </div>
                 <div id="app" class="body">
                     <div class="row">
