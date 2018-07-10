@@ -25,7 +25,7 @@
             <div class="row">
                 <!-- /.col -->
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-block btn-flat" style="background-color: #800000; color: #fff; font-weight: bold">Send Reset Link</button>
+                    <button type="submit" class="btn btn-block btn-flat" style="background-color: #9C27B0; color: #fff; font-weight: bold">Send Reset Link</button>
                 </div>
                 <!-- /.col -->
             </div>
