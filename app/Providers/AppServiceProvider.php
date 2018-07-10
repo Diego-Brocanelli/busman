@@ -15,7 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Auth::attempt(['email' => 'maxcelos@outlook.com', 'password' => 'admin.123']);
+        //Auth::attempt(['email' => 'maxcelos@outlook.com', 'password' => 'admin.123']);
+        //Auth::logout();
     }
 
     /**

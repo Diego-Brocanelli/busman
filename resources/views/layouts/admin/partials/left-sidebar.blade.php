@@ -16,7 +16,8 @@
                     <li><a href="javascript:void(0);"><i class="pe-7s-cart pe-2x pe-va"></i> Sales</a></li>
                     <li><a href="javascript:void(0);"><i class="pe-7s-like pe-2x pe-va"></i> Likes</a></li>
                     <li role="seperator" class="divider"></li>
-                    <li><a href="javascript:void(0);"><i class="pe-7s-power pe-2x pe-va"></i> Sign Out</a></li>
+                    <li><a onclick="document.getElementById('logout').submit()"><i class="pe-7s-power pe-2x pe-va"></i> Sign Out</a></li>
+                    <form action="/logout" method="POST" id="logout">{{ csrf_field() }}</form>
                 </ul>
             </div>
         </div>

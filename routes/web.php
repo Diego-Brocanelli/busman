@@ -11,16 +11,19 @@
 |
 */
 
-Route::view('/', 'dashboard')->name('dashboard');
+Auth::routes();
 
-Route::group(['prefix' => 'users', 'as' => 'users.'], function (){
+Route::view('/home', 'dashboard')->name('dashboard')->middleware(['web', 'auth']);
+Route::view('/', 'dashboard')->name('dashboard')->middleware(['web', 'auth']);
+
+Route::group(['prefix' => 'users', 'as' => 'users.', 'middleware' => ['web', 'auth']], function (){
     Route::view('/', 'users.index')->name('list');
     Route::view('create', 'users.create')->name('create');
     Route::view('{user}', 'users.detail')->name('detail');
     Route::view('{user}/edit', 'users.edit')->name('edit');
 });
 
-Route::group(['prefix' => 'financial', 'as' => 'financial.'], function (){
+Route::group(['prefix' => 'financial', 'as' => 'financial.', 'middleware' => ['web', 'auth']], function (){
     Route::view('incoming', 'financial.incoming')->name('incoming');
     Route::view('expenses', 'financial.expenses')->name('expenses');
     Route::view('accounts', 'financial.accounts')->name('accounts');
