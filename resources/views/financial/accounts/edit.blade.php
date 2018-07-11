@@ -1,10 +1,10 @@
 @extends('layouts.admin.dashboard')
 
-@section('title', 'New User')
+@section('title', 'Update User')
 
 @section('main-content')
-
-    <div id="app">
+    <div id="app" >
+    @include('layouts.admin.partials.toast')
 
         <!-- Widgets -->
         <div class="row clearfix">
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-success pull-right" @click="saveEmployee">Save</button>
+                                <button class="btn btn-info" @click="saveEmployee">Update</button>
                             </div>
                         </div>
                     </div>
@@ -50,11 +50,12 @@
         </div>
         <!-- #END# Widgets -->
     </div>
+
 @endsection
 
 @section('scripts')
     @parent
-    @include('layouts.admin.partials.toast')
+
     <script>
         var app = new Vue({
             el: '#app',
@@ -63,19 +64,32 @@
                     name: "",
                     email: ""
                 },
-                errors: []
+                errors: [],
+                message: ""
             },
 
             methods: {
                 saveEmployee: function() {
 
-                    this.errors = [];
+                    let data = {};
 
-                    axios.post('/api/employees/', this.employee).then(response => {
-                        this.employee.name = '';
-                        this.employee.email = '';
+                    if (this.employee.name)
+                        data.name = this.employee.name;
 
-                        toast.success("User created successfully");
+                    if (this.employee.email)
+                        data.email = this.employee.email;
+
+                    axios.put('/api/employees/' +  this.employee.id, data).then(response => {
+                        this.employee.name = response.data.user.name;
+                        this.employee.email = response.data.user.email;
+
+                        this.message = "User updated successfully";
+
+                        let inst = this;
+
+                        setTimeout(function () {
+                            inst.message = "";
+                        }, 3000);
                     }).catch(error => {
                         this.errors = error.response.data.errors;
 
@@ -83,8 +97,14 @@
                 }
             },
 
-            mounted: function () {
+            mounted: function (){
+                let params = location.href.split('/');
 
+                axios.get('/api/employees/' + params[params.length - 2]).then(response => {
+                    this.employee.name = response.data.user.name;
+                    this.employee.email = response.data.user.email;
+                    this.employee.id = response.data.id;
+                });
             }
         })
     </script>

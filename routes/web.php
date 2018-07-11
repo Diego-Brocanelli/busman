@@ -26,6 +26,6 @@ Route::group(['prefix' => 'users', 'as' => 'users.', 'middleware' => ['web', 'au
 Route::group(['prefix' => 'financial', 'as' => 'financial.', 'middleware' => ['web', 'auth']], function (){
     Route::view('incoming', 'financial.incoming')->name('incoming');
     Route::view('expenses', 'financial.expenses')->name('expenses');
-    Route::view('accounts', 'financial.accounts')->name('accounts');
+    Route::view('accounts', 'financial.accounts.index')->name('accounts');
     Route::view('balance', 'financial.balance')->name('balance');
 });

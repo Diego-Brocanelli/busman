@@ -29,21 +29,11 @@ class UsersTableSeeder extends Seeder
                 'teamName' => 'Maxcelos',
                 'department' => 'IT'
             ],[
-                'name' => 'Santiago Sanches',
-                'email' => 'sanchexm@protonmail.com',
-                'teamName' => 'Sanchexm',
+                'name' => 'John Smith',
+                'email' => 'john@email.com',
+                'teamName' => 'John',
                 'department' => 'IT'
-            ],[
-                'name' => 'Farley Rangel',
-                'email' => 'farley@email.com',
-                'teamName' => 'Farley',
-                'department' => 'IT'
-            ],[
-                'name' => 'Munish Kumar',
-                'email' => 'munish-kumar@outlook.com',
-                'teamName' => 'Munish',
-                'department' => 'IT'
-            ],
+            ]
         ];
 
         $comStatus = ['auto-gen', 'new', 'progress', 'hold', 'complete', 'pending', 'closed', 'canceled'];
@@ -119,10 +109,10 @@ class UsersTableSeeder extends Seeder
 
 
             /*
-             * Create 5 customers for this team
+             * Create 150 customers for this team
              *
              * */
-            factory(User::class, 5)->create()->each(function($customer) use ($team) {
+            factory(User::class, 150)->create()->each(function($customer) use ($team) {
                 $customer->customer()->create([
                     'business_name' => $customer->name,
                     'meta' => null,
@@ -136,7 +126,7 @@ class UsersTableSeeder extends Seeder
 
 
             /*
-             * Create 2 non admin users for this team
+             * Create 150 non admin users for this team
              *
              * */
             factory(User::class, 150)->create()->each(function($employee) use ($team, $userDataItem) {

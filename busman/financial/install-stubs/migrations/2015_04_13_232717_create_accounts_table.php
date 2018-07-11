@@ -17,11 +17,13 @@ class CreateAccountsTable extends Migration
             $table->string('name');
             $table->decimal('amount', 20, 2);
             $table->unsignedInteger('assigned_to');
+            $table->unsignedInteger('team_id');
 
             $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('assigned_to')->references('id')->on('employees');
+            $table->foreign('team_id')->references('id')->on('teams');
         });
     }
 

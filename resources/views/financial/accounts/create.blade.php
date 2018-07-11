@@ -5,6 +5,7 @@
 @section('main-content')
 
     <div id="app">
+    @include('layouts.admin.partials.toast')
 
         <!-- Widgets -->
         <div class="row clearfix">
@@ -54,7 +55,7 @@
 
 @section('scripts')
     @parent
-    @include('layouts.admin.partials.toast')
+
     <script>
         var app = new Vue({
             el: '#app',
@@ -63,7 +64,8 @@
                     name: "",
                     email: ""
                 },
-                errors: []
+                errors: [],
+                message: ""
             },
 
             methods: {
@@ -75,7 +77,13 @@
                         this.employee.name = '';
                         this.employee.email = '';
 
-                        toast.success("User created successfully");
+                        this.message = "User created successfully";
+
+                        let inst = this;
+
+                        setTimeout(function () {
+                            inst.message = "";
+                        }, 3000);
                     }).catch(error => {
                         this.errors = error.response.data.errors;
 

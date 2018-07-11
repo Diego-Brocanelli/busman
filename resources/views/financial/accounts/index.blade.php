@@ -1,9 +1,10 @@
 @extends('layouts.admin.dashboard')
 
-@section('title', 'Users')
+@section('title', 'Accounts')
 
 @section('main-content')
     <div id="app" >
+        @include('layouts.admin.partials.toast')
 
         <div class="row clearfix">
             <div class="col-md-12">
@@ -98,7 +99,6 @@
 @section('scripts')
     @parent
 
-    @include('layouts.admin.partials.toast')
     <script>
         var app = new Vue({
             el: '#app',
@@ -193,7 +193,6 @@
 
                 deleteEmployee: function (employee) {
                     let inst = this;
-
                     swal({
                         title: "Are you sure?",
                         text: "Delete user: " + employee.user.name,
@@ -202,11 +201,18 @@
                         confirmButtonColor: '#e10000',
                         confirmButtonText: 'Yes, delete it'
                     }, function () {
+
                         axios.delete('/api/employees/' + employee.id).then(response => {
+
                             inst.getEmployees();
 
-                            toast.danger("User deleted successfully");
+                            inst.message = "User deleted successfully";
+
+                            setTimeout(function () {
+                                inst.message = "";
+                            }, 3000);
                         })
+
                     })
                 },
 

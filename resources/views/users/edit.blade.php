@@ -3,14 +3,8 @@
 @section('title', 'Update User')
 
 @section('main-content')
-    <div id="app" >
-        <transition name="slide-fade">
-            <div v-if="message" class="alert alert-success alert-dismissible" style="position: absolute; right: 50px; top: 50px; z-index: 100000">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                @{{ message }}
-            </div>
-        </transition>
 
+    <div id="app" >
         <!-- Widgets -->
         <div class="row clearfix">
             <div class="col-md-12">
@@ -56,10 +50,12 @@
         <!-- #END# Widgets -->
     </div>
 
+
 @endsection
 
 @section('scripts')
     @parent
+    @include('layouts.admin.partials.toast')
 
     <script>
         var app = new Vue({
@@ -69,8 +65,7 @@
                     name: "",
                     email: ""
                 },
-                errors: [],
-                message: ""
+                errors: []
             },
 
             methods: {
@@ -88,13 +83,8 @@
                         this.employee.name = response.data.user.name;
                         this.employee.email = response.data.user.email;
 
-                        this.message = "User updated successfully";
+                        toast.success("User updated successfully");
 
-                        let inst = this;
-
-                        setTimeout(function () {
-                            inst.message = "";
-                        }, 3000);
                     }).catch(error => {
                         this.errors = error.response.data.errors;
 
@@ -111,6 +101,6 @@
                     this.employee.id = response.data.id;
                 });
             }
-        })
+        });
     </script>
 @endsection
